@@ -1,10 +1,12 @@
 from django import forms
-from models import Person, Relationship
+from .models import Person, Relationship
+
 
 class PersonForm(forms.ModelForm):
     class Meta:
         model = Person
-        fields = ['first_name', 'surname', 'birth_date', 'death_date']
+        fields = ['first_name', 'last_name', 'birth_date', 'death_date']
+
 
 class RelationshipForm(forms.ModelForm):
     class Meta:

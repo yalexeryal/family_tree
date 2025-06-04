@@ -1,5 +1,5 @@
 """
-URL configuration for my_family_tree project.
+URL configuration for family_tree project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,10 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from family_tree_app.views import person_detail, person_create
-
+from genealogy.views import person_detail, create_person
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',person_detail,name="person_detail"),
+    path('', person_detail, name='person_detail'),
+    path('person/', create_person, name='create_person')
 ]

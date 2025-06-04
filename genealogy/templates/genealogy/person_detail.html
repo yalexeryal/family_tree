@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ person.first_name }} {{ person.last_name }}</h1>
+<p>Дата рождения: {{ person.birth_date }}</p>
+<p>Дата смерти: {{ person.death_date }}</p>
+
+<h2>Родственные связи:</h2>
+
+<h3>Исходящие связи:</h3>
+<ul>
+    {% for relationship in relationships_from %}
+    <li>{{ relationship.relationship_type }}: <a href="{% url 'person_detail' relationship.to_person.id %}">
+        {{ relationship.to_person.first_name }} {{ relationship.to_person.last_name }}</a>
+        (Описание: {{ relationship.description }})</li>
+    {% endfor %}
+</ul>
+
+<h3>Входящие связи:</h3>
+<ul>
+    {% for relationship in relationships_to %}
+    <li>{{ relationship.relationship_type }}: <a href="{% url 'person_detail' relationship.from_person.id %}">{{ relationship.from_person.first_name }} {{ relationship.from_person.last_name }}</a> (Описание: {{ relationship.description }})</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'create_relationship' person.id %}">Добавить связь</a>
+</body>
+</html>
